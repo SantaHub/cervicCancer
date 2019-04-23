@@ -3,7 +3,7 @@
 """
 Created on Fri Apr 13 23:26:33 2018
 
-@author: austin
+@author: Evelin
 """
 # cd /home/austin/ML/CervicCancer
 
@@ -20,7 +20,6 @@ from utilities import image_manipulation as imanip
 from utilities import miscellaneous as misc
 
 from itertools import count
-import os
 
 def read_paths(path, no_labels=False, label_type=None):
     # ** Takes a directory path and returns all of the file paths within the
@@ -158,13 +157,13 @@ dense_shapes = [100,50,n_classes]
 
 inputs, outs = mod.cnn_model(first_conv_shapes, conv_shapes, conv_depths, dense_shapes, image_shape, n_classes)
 model = Model(inputs=inputs,outputs=outs)
-learning_rate = .0001
+learning_rate = .01
 for i in range(20):
     if i > 4:
 learning_rate = .01 # Anneals the learning rate
 adam_opt = optimizers.Adam(lr=learning_rate)
 model.compile(loss='categorical_crossentropy', optimizer=adam_opt, metrics=['accuracy'])
-history = model.fit_generator(train_generator, train_steps_per_epoch, epochs=1,
+history = model.fit_generator(train_generator, train_steps_per_epoch, epochs=10,
                         validation_data=valid_generator,validation_steps=valid_steps_per_epoch, max_q_size=1)
 
 
