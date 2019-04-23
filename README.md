@@ -1,4 +1,4 @@
-# cervicCancer Evelin Chechi
+# cervicCancer 
 
 
 Take input image from data train folder. 
